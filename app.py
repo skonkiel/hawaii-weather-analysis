@@ -38,6 +38,65 @@ def home():
         f"/api/v1.0/*start*/*end* - Minimum, Average, and Max temps for a date range starting on *start* & ending on *end*"
     )
 
+@app.route('/api/v1.0/precipitation')
+def precipitation():
+    session = Session(engine)
+    
+    '''get all precipitation data + dates for 8/23/2016 - 8/23/2017'''
+    results = session.query(Measurement.date, Measurement.prcp) \
+            .filter(Measurement.date <= '2017-08-23') \
+            .filter(Measurement.date >= '2016-08-23').all()
+    
+    session.close()
+    
+    all_prcp = []
+    
+    for date, prcp in results:
+        prcp_dict = {}
+        prcp_dict[date] = prcp
+        all_prcp.append(prcp_dict)
+
+    return jsonify(all_prcp)
+
+@app.route('/api/v1.0/stations')
+def stations():
+    session = Session(engine)
+    
+    '''return a list of all stations in the dataset'''
+    station_list = session.query(Station.station).all()
+    
+    session.close()
+ 
+    d = []
+    
+    for x, in station_list:
+        d.append(x)
+        
+    return jsonify(d)
+
+@app.route('/api/v1.0/tobs')
+def tobs():
+    session = Session(engine)
+    
+    '''query for the dates and temperature observations from a year from the last data point'''
+    temps = session.query(Measurement.date, Measurement.tobs) \
+            .filter(Measurement.date <= '2017-08-23') \
+            .filter(Measurement.date >= '2016-08-23').all()
+    
+    session.close()
+    
+    d = []
+    
+    '''Return a JSON list of Temperature Observations (tobs) for the previous year.'''
+    for date, tobs in temps:
+        t = []
+        t.append(date)
+        t.append(tobs)
+        d.append(t)      
+        
+    return jsonify(d)
+    
+
 if __name__ == "__main__":
     app.run(debug=True)
 

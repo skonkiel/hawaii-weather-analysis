@@ -38,7 +38,7 @@ def home():
         f"/api/v1.0/tobs - Temperature observations (F)<br/>"
         f"/api/v1.0/*start* - Minimum, Average, and Max temps for a date range starting on *start*<br/>"
         f"/api/v1.0/*start*/*end* - Minimum, Average, and Max temps for a date range starting on *start* & ending on *end*<br/>"
-        f"Note: Dates should be formatted YYY-MM-DD"
+        f"Note: Dates should be formatted YYYY-MM-DD"
     )
 
 @app.route('/api/v1.0/precipitation')
@@ -69,7 +69,7 @@ def stations():
     station_list = session.query(Station.station).all()
     
     session.close()
- 
+    
     d = []
     
     for x, in station_list:
@@ -92,9 +92,9 @@ def tobs():
     
     '''Return a JSON list of Temperature Observations (tobs) for the previous year.'''
     for date, tobs in temps:
-        t = []
-        t.append(date)
-        t.append(tobs)
+        t = {}
+        t['date'] = date
+        t['tobs'] = tobs
         d.append(t)      
         
     return jsonify(d)
@@ -115,14 +115,15 @@ def date(start_date):
 
     session.close()
 
-    d = {}
+    d = []
 
     for date, min_tobs, avg_tobs, max_tobs in temps:
         tobs = {}
+        tobs['DATE'] = date
         tobs['TMIN'] = min_tobs
         tobs['TAVG'] = avg_tobs
         tobs['TMAX'] = max_tobs
-        d[date] = tobs
+        d.append(tobs)
         
     return jsonify(d)
 
@@ -139,14 +140,15 @@ def two_date(start_date, end_date):
 
     session.close()
 
-    d = {}
+    d = []
 
     for date, min_tobs, avg_tobs, max_tobs in temps:
         tobs = {}
+        tobs['DATE'] = date
         tobs['TMIN'] = min_tobs
         tobs['TAVG'] = avg_tobs
         tobs['TMAX'] = max_tobs
-        d[date] = tobs
+        d.append(tobs)
         
     return jsonify(d)
     

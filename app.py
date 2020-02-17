@@ -52,12 +52,12 @@ def precipitation():
     
     session.close()
     
-    all_prcp = []
+    all_prcp = {}
     
     for date, prcp in results:
-        prcp_dict = {}
-        prcp_dict[date] = prcp
-        all_prcp.append(prcp_dict)
+        # prcp_dict = {}
+        all_prcp[date] = prcp
+        # all_prcp.append(prcp_dict)
 
     return jsonify(all_prcp)
 

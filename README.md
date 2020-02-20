@@ -1,8 +1,6 @@
 # SQLAlchemy Homework - Surfs Up!
 
-### Before You Begin
-
-Congratulations! You've decided to treat yourself to a long holiday vacation in Honolulu, Hawaii! To help with your trip planning, you need to do some climate analysis on the area. T
+Congratulations! You've decided to treat yourself to a long holiday vacation in Honolulu, Hawaii! To help with your trip planning, you need to do some climate analysis on the area.
 
 ## Step 1 - Climate Analysis and Exploration
 
@@ -14,8 +12,6 @@ To begin, use Python and SQLAlchemy to do basic climate analysis and data explor
 
 * Plot the results.
 
-  ![precipitation](Images/precipitation.png)
-
 * Use Pandas to print the summary statistics for the precipitation data.
 
 ### Station Analysis
@@ -26,9 +22,7 @@ To begin, use Python and SQLAlchemy to do basic climate analysis and data explor
 
 * Design a query to retrieve the last 12 months of temperature observation data (tobs).
 
-  * Plot the results as a histogram with `bins=12`.
-
-    ![station-histogram](Images/station-histogram.png)
+* Plot the results.
 
 - - -
 
@@ -66,8 +60,6 @@ Now that you have completed your initial analysis, design a Flask API based on t
 
   * Use the peak-to-peak (tmax-tmin) value as the y error bar (yerr).
 
-    ![temperature](Images/temperature.png)
-
 ### Daily Rainfall Average
 
 * Calculate the rainfall per weather station using the previous year's matching dates.
@@ -75,8 +67,6 @@ Now that you have completed your initial analysis, design a Flask API based on t
 * Calculate the daily normals. Normals are the averages for the min, avg, and max temperatures.
 
 * Use Pandas to plot an area plot (`stacked=False`) for the daily normals.
-
-  ![daily-normals](Images/daily-normals.png)
 
 ### Copyright
 

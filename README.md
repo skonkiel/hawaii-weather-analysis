@@ -1,73 +1,34 @@
-# SQLAlchemy Homework - Surfs Up!
+# Hawai'i Weather Analysis
 
-Congratulations! You've decided to treat yourself to a long holiday vacation in Honolulu, Hawaii! To help with your trip planning, you need to do some climate analysis on the area.
+## Project background
+This project analyzes historical weather station observations for Hawai'i and repurposes the data into a Flask-powered API. It answers questions like: 
+* What are general trends in the last 12 months worth of preciptation and temperature data?
+* How many stations collected weather observations, and which were the most active stations?
+* Hawaii is reputed to enjoy mild weather all year. Is there a meaningful difference between the temperatures in June and December?
+* How much rain should you expect to encounter on any given day?
 
-## Step 1 - Climate Analysis and Exploration
+## Technologies used
+* sqlite, to store the analyzed data
+* SQLAlchemy, to load the analyzed data 
+* Pandas, to analyze the data
+* Matplotlib, to visualize the data
+* Flask, to make the data available via API
 
-To begin, use Python and SQLAlchemy to do basic climate analysis and data exploration of your climate database. All of the following analysis should be completed using SQLAlchemy ORM queries, Pandas, and Matplotlib.
+## Installation
 
-### Precipitation Analysis
-
-* Design a query to retrieve the last 12 months of precipitation data.
-
-* Plot the results.
-
-* Use Pandas to print the summary statistics for the precipitation data.
-
-### Station Analysis
-
-* Design a query to calculate the total number of stations.
-
-* Design a query to find the most active stations.
-
-* Design a query to retrieve the last 12 months of temperature observation data (tobs).
-
-* Plot the results.
-
-- - -
-
-## Step 2 - Climate App
-
-Now that you have completed your initial analysis, design a Flask API based on the queries that you have just developed.
-
-* Use FLASK to create your routes.
+1. Clone this repository
+2. Launch a Jupyter Notebook from Git Bash/Terminal (by running `jupyter notebook`). You will likely need to install some packages like SQLAlchemy, pandas, and Matplotlib. 
+3. Open and run the `climate_starter.ipynb` Jupyter notebook to load and analyze the data.
+4. Start a Flask server to work with the API endpoints. To start the server, first activate a Python virtual enviornment that has the necessary packages installed. From within the same folder as `app.py`, run `python app.py` from your Git Bash/Terminal window. You can then copy and paste the Flask URL into your browser to start working with the API and its various routes.
 
 ### Routes
 
-* `/`: Home page. List all routes that are available.
+* `/`: Home page. Lists all routes that are available.
 
-* `/api/v1.0/precipitation`: Return the JSON representation of your dictionary.
+* `/api/v1.0/precipitation`: Returns the JSON representation of your dictionary.
 
-* `/api/v1.0/stations`: Return a JSON list of stations from the dataset.
+* `/api/v1.0/stations`: Returns a JSON list of stations from the dataset.
 
-* `/api/v1.0/tobs`: Return a JSON list of Temperature Observations (tobs) for the previous year (from the last data point)
+* `/api/v1.0/tobs`: Returns a JSON list of Temperature Observations (tobs) for the previous year (from the last data point)
 
-* `/api/v1.0/<start>` and `/api/v1.0/<start>/<end>`: Return a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
-
-- - -
-
-### Optional: Other Recommended Analyses
-
-### Temperature Analysis I
-
-* Hawaii is reputed to enjoy mild weather all year. Is there a meaningful difference between the temperature in, for example, June and December?
-
-### Temperature Analysis II
-
-* Plot the min, avg, and max temperature from your previous query as a bar chart.
-
-  * Use the average temperature as the bar height.
-
-  * Use the peak-to-peak (tmax-tmin) value as the y error bar (yerr).
-
-### Daily Rainfall Average
-
-* Calculate the rainfall per weather station using the previous year's matching dates.
-
-* Calculate the daily normals. Normals are the averages for the min, avg, and max temperatures.
-
-* Use Pandas to plot an area plot (`stacked=False`) for the daily normals.
-
-### Copyright
-
-Trilogy Education Services © 2019. All Rights Reserved.
+* `/api/v1.0/<start>` and `/api/v1.0/<start>/<end>`: Returns a JSON list of the minimum temperature, the average temperature, and the max temperature for a given start or start-end range.
